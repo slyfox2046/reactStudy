@@ -1,6 +1,8 @@
-const auth = ((state) => { }, action) => {
-  siwtch(action.type){ 
+const auth = (state= { }, action) => {
+  switch(action.type){
     default: return state;
+
   }
+  
 };
 export default auth;
