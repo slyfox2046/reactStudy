@@ -8,6 +8,8 @@ export default class SignupForm extends React.Component {
       email: '',
       password: '',
       passwordConfirmation: '',
+      errors: {},
+      isLoading: false,
     };
   }
   onChange = (e) => {
@@ -15,12 +17,18 @@ export default class SignupForm extends React.Component {
       [e.target.name]: e.target.value,
     });
   };
-  onSubmit = (e) => { 
+  onSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state)
-    this.props.signupActions.userSignupRequest(this.state);
-  }
+    console.log(this.state);
+    this.props.signupActions.userSignupRequest(this.state).then(
+      () => {},
+      ({ response }) => {
+        this.setState({ errors: response.data, isLoading: false });
+      }
+    );
+  };
   render() {
+    const { errors, isLoading } = this.state;
     return (
       <form onSubmit={this.onSubmit}>
         <h1>Join our community</h1>
@@ -35,6 +43,7 @@ export default class SignupForm extends React.Component {
             onChange={this.onChange}
             className="form-control"
           />
+          {errors.username && <span className="form-text text-muted">{errors.username}</span>}
         </div>
         <div className="form-group">
           <label htmlFor="" className="control-label">
@@ -47,6 +56,7 @@ export default class SignupForm extends React.Component {
             onChange={this.onChange}
             className="form-control"
           />
+           {errors.email && <span className="form-text text-muted">{errors.email}</span>}
         </div>
         <div className="form-group">
           <label htmlFor="" className="control-label">
@@ -59,6 +69,7 @@ export default class SignupForm extends React.Component {
             onChange={this.onChange}
             className="form-control"
           />
+           {errors.password && <span className="form-text text-muted">{errors.password}</span>}
         </div>
         <div className="form-group">
           <label htmlFor="" className="control-label">
@@ -71,6 +82,7 @@ export default class SignupForm extends React.Component {
             onChange={this.onChange}
             className="form-control"
           />
+           {errors.passwordConfirmation && <span className="form-text text-muted">{errors.passwordConfirmation}</span>}
         </div>
         <div className="form-group">
           <button className="btn btn-primary  btn-lg">注册</button>
