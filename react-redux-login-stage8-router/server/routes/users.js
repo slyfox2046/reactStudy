@@ -25,11 +25,13 @@ const validatorInput = (data) => {
 };
 
 // 这里的路径是route 下的路径
+
 router.post('/', (req, res) => {
-  console.log(req.body);
   const { errors, isValid } = validatorInput(req.body);
-  console.log(errors,isValid)
-  if (!isValid) {
+  console.log(errors, isValid);
+  if (isValid) {
+    res.send({ success: true });
+  } else {
     res.status(400).json(errors);
   }
 });

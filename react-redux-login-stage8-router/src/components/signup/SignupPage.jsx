@@ -9,6 +9,7 @@ class SignupPage extends React.Component {
       <div className="row">
         <div className="col-md-3"></div>
         <div className="col-md-6">
+          {/* <SignupForm history={ this.props.history} signupActions={ this.props.signupActions}/> */}
           <SignupForm signupActions={ this.props.signupActions}/>
         </div>
         <div className="col-md-3"></div>
