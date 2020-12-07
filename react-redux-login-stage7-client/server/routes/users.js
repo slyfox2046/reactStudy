@@ -17,7 +17,7 @@ const validatorInput = (data) => {
   if (validator.isEmpty(data.passwordConfirmation)) {
     errors.passwordConfirmation = '请确认密码';
   }
-  debugger;
+
   if (!validator.equals(data.password, data.passwordConfirmation)) {
     errors.passwordConfirmation = '两次密码不同';
   }
