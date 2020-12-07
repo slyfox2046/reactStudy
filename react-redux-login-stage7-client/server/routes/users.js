@@ -9,28 +9,28 @@ const validatorInput = (data) => {
     errors.username = '请填写用户名';
   }
   if (!validator.isEmail(data.email)) {
-    errors.email = '请填写邮箱';
+    errors.email = '请填写email';
   }
   if (validator.isEmpty(data.password)) {
-    errors.username = '请填写密码';
+    errors.password = '请填写密码';
   }
   if (validator.isEmpty(data.passwordConfirmation)) {
-    errors.username = '请确认密码';
+    errors.passwordConfirmation = '请确认密码';
   }
+  debugger;
   if (!validator.equals(data.password, data.passwordConfirmation)) {
-    errors.username = '两次密码不同';
+    errors.passwordConfirmation = '两次密码不同';
   }
-  return {
-    errors,
-    isValid: isEmpty(error),
-  };
+  return { errors, isValid: isEmpty(errors) };
 };
 
 // 这里的路径是route 下的路径
-router.get('/', (req, res) => {
-  console.log(req.body)
-
+router.post('/', (req, res) => {
+  console.log(req.body);
   const { errors, isValid } = validatorInput(req.body);
-  
+  console.log(errors,isValid)
+  if (!isValid) {
+    res.status(400).json(errors);
+  }
 });
 module.exports = router;
