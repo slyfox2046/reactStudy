@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import React from 'react';
-import {withRouter} from "react-router-dom"
+import { withRouter } from 'react-router-dom';
 class SignupForm extends React.Component {
   constructor(props) {
     super(props);
@@ -100,4 +100,4 @@ class SignupForm extends React.Component {
   }
 }
 
-export default withRouter(SignupForm)
+export default withRouter(SignupForm);
